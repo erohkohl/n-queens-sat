@@ -12,7 +12,7 @@ before_install:
 
 env:
   global:
-    - CODECOV_TOKEN=:uuid-repo-token
+    - CODECOV_TOKEN=uuid-repo-token
 
 addons:
   apt:
