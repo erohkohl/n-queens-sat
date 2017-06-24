@@ -1,0 +1,6 @@
+[package]
+name = "dpll"
+version = "0.1.0"
+authors = ["erik_rohkohl <erikrohkohl@googlemail.com>"]
+
+[dependencies]
