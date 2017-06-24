@@ -12,7 +12,7 @@ before_install:
 
 env:
   global:
-    - CODECOV_TOKEN=:$TOKEN
+    - CODECOV_TOKEN=:TOKEN
 
 addons:
   apt:
