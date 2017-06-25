@@ -10,10 +10,6 @@ env:
 before_install:
   - sudo apt-get update
 
-env:
-  global:
-    secure: CODECOV_TOKEN=uuid-repo-token
-
 addons:
   apt:
     packages:
