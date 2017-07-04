@@ -1,10 +1,9 @@
 use std::collections::HashSet;
-/*
+
 pub fn solve(mut cnf:HashSet<Vec<i32>>, number_variables:usize) -> (bool, Vec<i32>){
     let part_assign: Vec<i32> = Vec::with_capacity(number_variables);
     return dpll(cnf, part_assign);
 }
-*/
 
 
 ///   DAVIS, PUTNAM, LOGEMANN, LOVELAND
