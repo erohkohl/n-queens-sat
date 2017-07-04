@@ -3,6 +3,7 @@ extern crate dpll;
 use std::collections::HashSet;
 
 use dpll::backtracking::sat as SAT;
+use dpll::backtracking::cnf as CNF;
 
 #[test]
 fn dpll_empty_cnf_is_sat() {
@@ -48,76 +49,97 @@ fn dpll_two_clause_two_lit_is_sat() {
     let (res_bool, _ ):(bool, Vec<i32>) = SAT::dpll(cnf, vec);
     assert!(res_bool);
 }
-/*
+
 #[test]
 fn dpll_two_clause_two_lit_model() {
     let number_of_var:usize = 2;
     let vec: Vec<i32> = Vec::with_capacity(number_of_var);
     let mut cnf:HashSet<Vec<i32>> = HashSet::new();
+    let cnf_clone:HashSet<Vec<i32>> = cnf.clone();
     cnf.insert(vec![1]);
     cnf.insert(vec![2]);
     let (_, model):(bool, Vec<i32>) = SAT::dpll(cnf, vec);
-    assert_eq!(model, vec![1, 2]);
-}*/
+    assert!(CNF::check_model(cnf_clone, vec![1, 2]));
+}
 
-/*
 #[test]
-fn test_dpll_case_two() {
+fn dpll_one_clause_two_lit_is_sat() {
     let number_of_var:usize = 2;
     let vec: Vec<i32> = Vec::with_capacity(number_of_var);
-    let (res_bool, _ ):(bool, Vec<i32>) = solver::dpll(vec![vec![1], vec![2]], vec);
+    let mut cnf:HashSet<Vec<i32>> = HashSet::new();
+    cnf.insert(vec![1i32, 2i32]);
+    let (res_bool, _ ):(bool, Vec<i32>) = SAT::dpll(cnf, vec);
     assert!(res_bool);
 }
 
 #[test]
-fn test_dpll_case_three() {
+fn dpll_one_clause_two_lit_model() {
     let number_of_var:usize = 2;
     let vec: Vec<i32> = Vec::with_capacity(number_of_var);
-    let (res_bool, _ ):(bool, Vec<i32>) = solver::dpll(vec![vec![-1], vec![2]], vec);
-    assert!(res_bool);
+    let mut cnf:HashSet<Vec<i32>> = HashSet::new();
+    cnf.insert(vec![1, 2]);
+    let (_, model):(bool, Vec<i32>) = SAT::dpll(cnf, vec);
+    assert!(model.contains(&1i32) || model.contains(&2i32));
 }
 
-
 #[test]
-fn test_dpll_case_four() {
+fn dpll_two_clause_two_lit_is_unsat() {
     let number_of_var:usize = 2;
     let vec: Vec<i32> = Vec::with_capacity(number_of_var);
-    let (res_bool, _ ):(bool, Vec<i32>) = solver::dpll(vec![vec![-1], vec![1, 2]], vec);
-    assert!(res_bool);
+    let mut cnf:HashSet<Vec<i32>> = HashSet::new();
+    cnf.insert(vec![-1i32]);
+    cnf.insert(vec![1i32]);
+    let (res_bool, _ ):(bool, Vec<i32>) = SAT::dpll(cnf, vec);
+    assert!(!res_bool);
 }
 
 #[test]
-fn test_dpll_case_five() {
-    let number_of_var:usize = 3;
-    let vec: Vec<i32> = Vec::with_capacity(number_of_var);
-    let (res_bool, _ ):(bool, Vec<i32>) =
-        solver::dpll(vec![vec![-1, -2], vec![1, 2, -3], vec![1, 3]], vec);
-    assert!(res_bool);
-}
-
-#[test]
-fn test_dpll_case_six() {
+fn dpll_three_clause_two_lit_is_unsat() {
     let number_of_var:usize = 2;
     let vec: Vec<i32> = Vec::with_capacity(number_of_var);
-    let (res_bool, _ ):(bool, Vec<i32>) = solver::dpll(vec![vec![-1, -2], vec![1]], vec);
+    let mut cnf:HashSet<Vec<i32>> = HashSet::new();
+    cnf.insert(vec![1i32, 2i32]);
+    cnf.insert(vec![-1i32]);
+    cnf.insert(vec![-2i32]);
+    let (res_bool, _ ):(bool, Vec<i32>) = SAT::dpll(cnf, vec);
+    assert!(!res_bool);
+}
+
+#[test]
+fn dpll_three_clause_two_lit_model() {
+    let number_of_var:usize = 2;
+    let vec: Vec<i32> = Vec::with_capacity(number_of_var);
+    let mut cnf:HashSet<Vec<i32>> = HashSet::new();
+    cnf.insert(vec![1i32, 2i32]);
+    cnf.insert(vec![-1i32]);
+    cnf.insert(vec![-2i32]);
+    let (_, model):(bool, Vec<i32>) = SAT::dpll(cnf, vec);
+    assert!(model.is_empty());
+}
+
+#[test]
+fn dpll_four_clause_four_lit_is_unsat() {
+    let number_of_var:usize = 2;
+    let vec: Vec<i32> = Vec::with_capacity(number_of_var);
+    let mut cnf:HashSet<Vec<i32>> = HashSet::new();
+    cnf.insert(vec![1i32, 2i32, -3i32, 4i32]);
+    cnf.insert(vec![-1i32, -3i32, -4i32]);
+    cnf.insert(vec![-2i32, 3i32]);
+    cnf.insert(vec![2i32, -3i32, 4i32]);
+    let (res_bool, _ ):(bool, Vec<i32>) = SAT::dpll(cnf, vec);
     assert!(res_bool);
 }
 
 #[test]
-#[should_panic]
-fn test_dpll_unsat_case_one() {
-    let number_of_var:usize = 1;
+fn dpll_four_clause_four_lit_is_model() {
+    let number_of_var:usize = 2;
     let vec: Vec<i32> = Vec::with_capacity(number_of_var);
-    let (res_bool, _ ):(bool, Vec<i32>) = solver::dpll(vec![vec![-1], vec![1]], vec);
-    assert!(res_bool);
+    let mut cnf:HashSet<Vec<i32>> = HashSet::new();
+    let cnf_clone:HashSet<Vec<i32>> = cnf.clone();
+    cnf.insert(vec![1i32, 2i32, -3i32, 4i32]);
+    cnf.insert(vec![-1i32, -3i32, -4i32]);
+    cnf.insert(vec![-2i32, 3i32]);
+    cnf.insert(vec![2i32, -3i32, 4i32]);
+    let (_, model):(bool, Vec<i32>) = SAT::dpll(cnf, vec);
+    assert!(CNF::check_model(cnf_clone, model));
 }
-
-#[test]
-#[should_panic]
-fn test_dpll_unsat_case_two() {
-    let number_of_var:usize = 1;
-    let vec: Vec<i32> = Vec::with_capacity(number_of_var);
-    let (res_bool, _ ):(bool, Vec<i32>) = solver::dpll(vec![vec![-1], vec![1, 2], vec![-2]], vec);
-    assert!(res_bool);
-}
-*/
