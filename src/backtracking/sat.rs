@@ -1,5 +1,8 @@
 use std::collections::HashSet;
 
+/// This method provides an additional abstraction layer between the caller of sat solver and
+/// the DPLL algorithm. Therefore it initializes the partial assignment with an empty vec and
+/// delegates the call to the DPLL algorithm.
 pub fn solve(mut cnf:HashSet<Vec<i32>>, number_variables:usize) -> (bool, Vec<i32>){
     let part_assign: Vec<i32> = Vec::with_capacity(number_variables);
     return dpll(cnf, part_assign);

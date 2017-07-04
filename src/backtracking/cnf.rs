@@ -1,17 +1,7 @@
 use std::collections::HashSet;
 
-pub fn equals(mut a:Vec<Vec<i32>>, mut b:Vec<Vec<i32>>) -> bool{
-    if a.is_empty() && b.is_empty(){
-        return true;
-    }
-    for i in 0..a.len(){
-        if a[0] == b[i]{
-            a.remove(0);
-            b.remove(i);
-            return equals(a, b);
-        };
-    }
-    return false;
+pub fn equals(mut a:HashSet<Vec<i32>>, mut b:HashSet<Vec<i32>>) -> bool{
+    return a.eq(&b) && b.eq(&a);
 }
 
 /// Returns true if and only if a possible model solves a cnf.

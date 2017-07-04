@@ -1,34 +1,45 @@
 extern crate dpll;
 
+use std::collections::HashSet;
+
 use dpll::backtracking::cnf as cnf;
 
 #[test]
 fn test_cnf_equals_one() {
-    assert!(cnf::equals(vec![vec![]], vec![vec![]]));
+    let cnf:HashSet<Vec<i32>> = HashSet::new();
+    assert!(cnf::equals(cnf.clone(), cnf.clone()));
 }
 
 #[test]
 fn test_cnf_equals_two() {
-    assert!(cnf::equals(vec![vec![1]], vec![vec![1]]));
+    let mut cnf:HashSet<Vec<i32>> = HashSet::new();
+    cnf.insert(vec![1]);
+    assert!(cnf::equals(cnf.clone(), cnf.clone()));
 }
 
 #[test]
 fn test_cnf_equals_three() {
-    assert!(cnf::equals(vec![vec![1], vec![2]], vec![vec![1], vec![2]]));
+    let mut cnf:HashSet<Vec<i32>> = HashSet::new();
+    cnf.insert(vec![1]);
+    cnf.insert(vec![2]);
+    assert!(cnf::equals(cnf.clone(), cnf.clone()));
 }
 
 #[test]
 fn test_cnf_equals_four() {
-    assert!(cnf::equals(vec![vec![1, 3], vec![2]], vec![vec![1, 3], vec![2]]));
+    let mut cnf:HashSet<Vec<i32>> = HashSet::new();
+    cnf.insert(vec![1, 3]);
+    cnf.insert(vec![2]);
+    assert!(cnf::equals(cnf.clone(), cnf.clone()));
 }
 
 #[test]
 fn test_cnf_equals_five() {
-    assert!(cnf::equals(vec![ vec![2], vec![1, 3]], vec![vec![1, 3], vec![2]]));
-}
-
-#[test]
-#[should_panic]
-fn test_cnf_equals_six() {
-    assert!(cnf::equals(vec![ vec![2], vec![1, 5]], vec![vec![1, 3], vec![2]]));
+    let mut cnf:HashSet<Vec<i32>> = HashSet::new();
+    cnf.insert(vec![2]);
+    cnf.insert(vec![1, 3]);
+    let mut cnf_two:HashSet<Vec<i32>> = HashSet::new();
+    cnf_two.insert(vec![1, 3]);
+    cnf_two.insert(vec![2]);
+    assert!(cnf::equals(cnf, cnf_two));
 }
