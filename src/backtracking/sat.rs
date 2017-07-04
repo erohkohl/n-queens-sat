@@ -26,7 +26,7 @@ pub fn dpll(mut cnf:HashSet<Vec<i32>>, mut partial_assignment:Vec<i32>) -> (bool
         let lit:i32 = c.to_vec().pop().unwrap();
 
         if is_lit_conflict_with_part_assign(&partial_assignment, &lit){
-            return (false, partial_assignment);
+            return (false, vec![]);
         }else{
             let mut left:Vec<i32> = partial_assignment.clone();
             let mut right:Vec<i32> = partial_assignment.clone();
