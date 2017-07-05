@@ -1,27 +1,30 @@
+use std::collections::HashSet;
 
 //use backtracking::sat_solver as solver;
 
-pub fn at_most_one(xs:Vec<i32>) -> Vec<Vec<i32>>{
+pub fn at_most_one(xs:Vec<i32>) -> HashSet<Vec<i32>>{
     if xs.len() == 1{
-        return vec![vec![1]];
+        let mut min_clause:HashSet<Vec<i32>> = HashSet::new();
+        min_clause.insert(vec![1]);
+        return min_clause;
+
     }else {
         let number_prop_var = xs.len() + 1;
-        let mut clauseln_to_add:Vec<Vec<i32>>
-            = Vec::with_capacity(number_prop_var);
+        let mut clauseln_to_add:HashSet<Vec<i32>> = HashSet::new();
 
         for i in xs.iter() {
             for j in xs.iter() {
                 if i < j {
                     let a: i32 = (*i as i32) * (-1);
                     let b: i32 = (*j as i32) * (-1);
-                    clauseln_to_add.push(vec![a, b]);
+                    clauseln_to_add.insert(vec![a, b]);
                 }
             }
         }
-        return clauseln_to_add.to_vec();
+        return clauseln_to_add;
     }
 }
-
+/*
 pub fn at_least_one(xs:Vec<i32>) -> Vec<i32>{
     let n = xs.len() + 1;
     let mut cnf:Vec<i32> = Vec::with_capacity(n);
@@ -128,4 +131,4 @@ pub fn generate_cnf(n:usize) -> Vec<Vec<i32>>{
     cnf.append(at_most_one_queen_in_every_column(n).as_mut());
     cnf.append(at_most_one_queen_in_every_diagonal(n).as_mut());
     return cnf;
-}
+}*/

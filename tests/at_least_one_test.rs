@@ -1,5 +1,6 @@
 extern crate dpll;
 
+/*
 use dpll::modelling::n_queens as queens;
 
 #[test]
@@ -85,3 +86,4 @@ fn at_least_one_test_case_ten() {
     let result:Vec<i32> = queens::at_least_one(xs);
     assert_eq!(result, expected);
 }
+*/
