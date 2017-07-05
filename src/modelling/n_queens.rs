@@ -24,7 +24,7 @@ pub fn at_most_one(xs:Vec<i32>) -> HashSet<Vec<i32>>{
         return clauseln_to_add;
     }
 }
-/*
+
 pub fn at_least_one(xs:Vec<i32>) -> Vec<i32>{
     let n = xs.len() + 1;
     let mut cnf:Vec<i32> = Vec::with_capacity(n);
@@ -34,7 +34,7 @@ pub fn at_least_one(xs:Vec<i32>) -> Vec<i32>{
     }
     return cnf;
 }
-
+/*
 
 pub fn at_least_one_queen_in_every_row(n:usize) -> Vec<Vec<i32>>{
     let mut cnf:Vec<Vec<i32>> = Vec::with_capacity(n);
