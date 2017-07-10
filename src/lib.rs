@@ -1,2 +1,3 @@
-pub mod backtracking;
-pub mod modelling;
+pub mod logic;
+pub mod model;
+pub mod view;

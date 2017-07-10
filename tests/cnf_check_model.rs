@@ -2,7 +2,7 @@ extern crate dpll;
 
 use std::collections::HashSet;
 
-use dpll::backtracking::cnf as cnf;
+use dpll::logic::cnf as cnf;
 
 #[test]
 pub fn check_model_trivial_case_is_model(){

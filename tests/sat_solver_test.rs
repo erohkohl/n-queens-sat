@@ -2,8 +2,8 @@ extern crate dpll;
 
 use std::collections::HashSet;
 
-use dpll::backtracking::sat as SAT;
-use dpll::backtracking::cnf as CNF;
+use dpll::logic::sat as SAT;
+use dpll::logic::cnf as CNF;
 
 #[test]
 fn dpll_empty_cnf_is_sat() {

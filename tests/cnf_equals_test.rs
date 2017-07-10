@@ -2,7 +2,7 @@ extern crate dpll;
 
 use std::collections::HashSet;
 
-use dpll::backtracking::cnf as cnf;
+use dpll::logic::cnf as cnf;
 
 #[test]
 fn test_cnf_equals_one() {

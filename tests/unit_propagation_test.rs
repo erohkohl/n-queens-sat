@@ -1,7 +1,7 @@
 extern crate dpll;
 use std::collections::HashSet;
 
-use dpll::backtracking::sat as sat;
+use dpll::logic::sat as sat;
 
 #[test]
 fn up_empyt_clause() {

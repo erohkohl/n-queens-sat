@@ -2,7 +2,7 @@ extern crate dpll;
 
 use std::collections::HashSet;
 
-use dpll::backtracking::sat as solver;
+use dpll::logic::sat as solver;
 
 #[test]
 fn test_complex_cnf_case_one() {

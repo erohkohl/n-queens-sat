@@ -11,7 +11,7 @@ pub fn solve(mut cnf:HashSet<Vec<i32>>, number_variables:usize) -> (bool, Vec<i3
 
 ///   DAVIS, PUTNAM, LOGEMANN, LOVELAND
 ///   Algorithm first runs complete boolean unit propagation. Second it decides the first
-///   variable of the first clausel and spawns a new branch in our backtracking tree.
+///   variable of the first clausel and spawns a new branch in our logic tree.
 pub fn dpll(mut cnf:HashSet<Vec<i32>>, mut partial_assignment:Vec<i32>) -> (bool, Vec<i32>){
 
     if !unit_propagation(&mut cnf, &mut partial_assignment){
@@ -19,13 +19,16 @@ pub fn dpll(mut cnf:HashSet<Vec<i32>>, mut partial_assignment:Vec<i32>) -> (bool
         // in case cnf is not satisfiable return empty model
         return (false, vec![]);
     }else{
-        let c:Vec<i32>;
+        let next_clause:Vec<i32>;
 
         match cnf.iter().next(){
-            Some(x) => c = x.to_vec(),
-            None => c = return (true, partial_assignment),
+            Some(x) => next_clause = x.to_vec(),
+            None => return (true, partial_assignment),
         }
-        let lit:i32 = c.to_vec().pop().unwrap();
+        let mut lit: i32 = 0i32;
+        if !next_clause.to_vec().is_empty() {
+            lit = next_clause.to_vec().pop().unwrap();
+        }
 
         if is_lit_conflict_with_part_assign(&partial_assignment, &lit){
             return (false, vec![]);

@@ -2,7 +2,7 @@ extern crate dpll;
 
 use std::collections::HashSet;
 
-use dpll::modelling::n_queens as queens;
+use dpll::model::n_queens as queens;
 
 #[test]
 fn at_most_one_test_case_one() {

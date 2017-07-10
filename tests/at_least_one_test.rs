@@ -1,7 +1,7 @@
 extern crate dpll;
 
 
-use dpll::modelling::n_queens as queens;
+use dpll::model::n_queens as queens;
 
 #[test]
 fn at_least_one_test_case_one() {
