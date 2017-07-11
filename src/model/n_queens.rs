@@ -109,23 +109,24 @@ pub fn at_most_one_queen_in_every_column(n:usize) -> HashSet<Vec<i32>>{
 pub fn at_most_one_queen_in_every_diagonal(n:usize) -> HashSet<Vec<i32>>{
     let mut cnf:HashSet<Vec<i32>> = HashSet::new();
     for i in 1..n + 1{
-        for j in 1..n + 1{
-            for k in 1..n + 1{
+        for k in 1..n + 1{
+            for j in 1..n + 1{
                 for m in 1..n + 1{
-                    if (i, k) != (j, m) {
 
-                        let a:bool = i + k == j + m;
-                        let b:bool = i as i32 - k as i32 == j as i32 - m as i32;
+                    let a:bool = (i as i32 - k as i32) == (m as i32 - j as i32);
+                    let b:bool = (i as i32 - k as i32) == (j as i32 - m as i32);
 
-                        if (a && !b) || (!a && b)  {
-                            let mut xs: Vec<i32> = Vec::with_capacity(n);
-                            let var_1: i32 = -1 * ((i as i32) * 10 + (j as i32));
-                            let var_2: i32 = -1 * ((k as i32) * 10 + (m as i32));
-                            xs.push(var_1);
-                            xs.push(var_2);
-                            cnf.insert(xs);
-                        }
+                    if 0 < i && i < k && k < n + 1 && (a || b) {
+
+                        let mut xs: Vec<i32> = Vec::with_capacity(2);
+                        let var_1: i32 = -1 * ((i as i32) * 10 + (j as i32));
+                        let var_2: i32 = -1 * ((k as i32) * 10 + (m as i32));
+                        xs.push(var_1);
+                        xs.push(var_2);
+                        xs.sort_by(|x, y| y.cmp(x));
+                        cnf.insert(xs);
                     }
+
                 }
             }
         }
