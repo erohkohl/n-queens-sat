@@ -140,39 +140,29 @@ fn at_most_one_queen_in_every_diagonal(){
 
     let result:HashSet<Vec<i32>> = queens::at_most_one_queen_in_every_diagonal(n);
     assert_eq!(result, expected);
-    //println!("{:?}", result);
 }
-/*
-fn at_most_one_queen_in_every_diagonal_left_to_right(){
-    let n = 4;
-    let mut expected:HashSet<Vec<i32>> = HashSet::new();
-    expected.insert(vec![-11, -22]);
-    expected.insert(vec![-12, -23]);
-    expected.insert(vec![-13, -24]);
-    expected.insert(vec![-21, -32]);
-    expected.insert(vec![-22, -33]);
-    expected.insert(vec![-23, -34]);
-    expected.insert(vec![-31, -42]);
-    expected.insert(vec![-32, -43]);
-    expected.insert(vec![-33, -44]);
-    expected.insert(vec![-11, -33]);
-    expected.insert(vec![-11, -44]);
-    expected.insert(vec![-12, -34]);
-    expected.insert(vec![-21, -43]);
-
-    let result:HashSet<Vec<i32>> = queens::at_most_one_queen_in_every_diagonal_left_to_right(n);
-    assert_eq!(result, expected);
-}*/
 
 #[test]
-fn generate_cnf_case_one(){
+fn generate_cnf_is_sat(){
     let n:usize = 4;
     let cnf:HashSet<Vec<i32>> = queens::generate_cnf(n);
-    println!("{:?}", cnf);
-
     let part_assign: Vec<i32> = Vec::with_capacity(n * n);
-    let (is_sat, model):(bool, Vec<i32>) = solver::dpll(cnf, part_assign);
-    println!("{:?}", model);
+    let (is_sat, _):(bool, Vec<i32>) = solver::dpll(cnf, part_assign);
     assert!(is_sat);
-    //ui::print_chess_board(model);
+}
+
+#[test]
+fn generate_cnf_check_model(){
+    let n:usize = 4;
+    let cnf:HashSet<Vec<i32>> = queens::generate_cnf(n);
+    let part_assign: Vec<i32> = Vec::with_capacity(n * n);
+    let mut expected:Vec<i32> = vec![-42, -22, -34, -44
+                                 , 43, -33, -23, -21
+                                 , 24, -14, -13, -32
+                                 , 31, 12, -11, -41];
+
+    expected.sort_by(|x, y| y.cmp(x));
+    let (_ , mut model):(bool, Vec<i32>) = solver::dpll(cnf, part_assign);
+    model.sort_by(|x, y| y.cmp(x));
+    assert_eq!(expected, model);
 }
