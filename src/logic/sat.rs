@@ -25,7 +25,7 @@ pub fn dpll(mut cnf:HashSet<Vec<i32>>, mut partial_assignment:Vec<i32>) -> (bool
             Some(x) => next_clause = x.to_vec(),
             None => return (true, partial_assignment),
         }
-        let mut lit: i32 = 0i32;
+        let mut lit:i32 = 0i32;
         if !next_clause.to_vec().is_empty() {
             lit = next_clause.to_vec().pop().unwrap();
         }

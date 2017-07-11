@@ -143,13 +143,23 @@ fn at_most_one_queen_in_every_diagonal(){
 }
 
 #[test]
-fn generate_cnf_is_sat(){
+fn generate_cnf_is_sat_n_four(){
     let n:usize = 4;
     let cnf:HashSet<Vec<i32>> = queens::generate_cnf(n);
     let part_assign: Vec<i32> = Vec::with_capacity(n * n);
     let (is_sat, _):(bool, Vec<i32>) = solver::dpll(cnf, part_assign);
     assert!(is_sat);
 }
+/*
+#[test]
+fn generate_cnf_is_sat_n_eight(){
+    let n:usize = 8;
+    let cnf:HashSet<Vec<i32>> = queens::generate_cnf(n);
+    let part_assign: Vec<i32> = Vec::with_capacity(n * n);
+    let (is_sat, _):(bool, Vec<i32>) = solver::dpll(cnf, part_assign);
+    assert!(is_sat);
+}
+*/
 
 #[test]
 fn generate_cnf_check_model(){
