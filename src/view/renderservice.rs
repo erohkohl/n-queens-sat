@@ -1,27 +1,34 @@
-pub fn print_chess_board(mut assign:Vec<i32>){
-  /*
-    let mut queens_position:Vec<i32> = Vec::new();;
+pub fn print_chess_board(assign:Vec<i32>) -> String{
+
+    let mut chess_board:String = String::new();
+    let mut queens_position:Vec<i32> = Vec::new();
+    let index:i32 = (assign.len() as f64).sqrt() as i32;
+
     for i in assign{
         if i > 0 {
             queens_position.push(i);
         }
     }
-    let mut x_position:Vec<i32> = Vec::new();
-    let mut y_position:Vec<i32> = Vec::new();;
+    let mut col:Vec<i32> = Vec::new();
+    let mut row:Vec<i32> = Vec::new();;
     for i in queens_position{
-        x_position.push(i % 10);
-        y_position.push(i - x_position.get(i as usize).unwrap() / 10);
+        col.push(i % 10i32);
+        row.push(i / 10i32);
     }
 
-    for i in 0..x_position.len{
-        for j in _position.len{
-            if i == *x_position.get(i as usize).unwrap() && j == *y_position.get(j as usize).unwrap(){
-                print!("Q");
+    for i in 1..index + 1{
+        let index_col:i32 = row.iter().position(|&r| r == i).unwrap() as i32;
+
+        for j in 1..index + 1{
+
+            if j == *col.get(index_col as usize).unwrap() {
+                chess_board.push_str("Q ");
             }else {
-                print!(".");
+                chess_board.push_str(". ");
             }
-            println!();
         }
+        chess_board.push_str("\n");
     }
-    */
+    println!("{}", chess_board);
+    return chess_board;
 }

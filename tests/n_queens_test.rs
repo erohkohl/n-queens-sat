@@ -156,13 +156,22 @@ fn generate_cnf_check_model(){
     let n:usize = 4;
     let cnf:HashSet<Vec<i32>> = queens::generate_cnf(n);
     let part_assign: Vec<i32> = Vec::with_capacity(n * n);
-    let mut expected:Vec<i32> = vec![-42, -22, -34, -44
-                                 , 43, -33, -23, -21
-                                 , 24, -14, -13, -32
-                                 , 31, 12, -11, -41];
+    let mut expected_one:Vec<i32> =
+        vec![-42, -22, -34, -44,
+             43, -33, -23, -21,
+             24, -14, -13, -32,
+             31, 12, -11, -41];
 
-    expected.sort_by(|x, y| y.cmp(x));
+    let mut expected_two:Vec<i32> =
+        vec![42, 34, 21, 13,
+             -11, -12, -14, -22,
+             -23, -24, -31, -32,
+             -33, -41, -43, -44];
+
+    expected_one.sort_by(|x, y| y.cmp(x));
+    expected_two.sort_by(|x, y| y.cmp(x));
+
     let (_ , mut model):(bool, Vec<i32>) = solver::dpll(cnf, part_assign);
     model.sort_by(|x, y| y.cmp(x));
-    assert_eq!(expected, model);
+    assert!(expected_one == model || expected_two == model);
 }

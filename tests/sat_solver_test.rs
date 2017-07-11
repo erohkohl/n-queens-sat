@@ -52,13 +52,10 @@ fn dpll_two_clause_two_lit_is_sat() {
 
 #[test]
 fn dpll_two_clause_two_lit_model() {
-    let number_of_var:usize = 2;
-    let vec: Vec<i32> = Vec::with_capacity(number_of_var);
     let mut cnf:HashSet<Vec<i32>> = HashSet::new();
     let cnf_clone:HashSet<Vec<i32>> = cnf.clone();
     cnf.insert(vec![1]);
     cnf.insert(vec![2]);
-    let (_, model):(bool, Vec<i32>) = SAT::dpll(cnf, vec);
     assert!(CNF::check_model(cnf_clone, vec![1, 2]));
 }
 
