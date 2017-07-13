@@ -150,7 +150,7 @@ fn generate_cnf_is_sat_n_four(){
     let (is_sat, _):(bool, Vec<i32>) = solver::dpll(cnf, part_assign);
     assert!(is_sat);
 }
-/*
+
 #[test]
 fn generate_cnf_is_sat_n_eight(){
     let n:usize = 8;
@@ -159,7 +159,6 @@ fn generate_cnf_is_sat_n_eight(){
     let (is_sat, _):(bool, Vec<i32>) = solver::dpll(cnf, part_assign);
     assert!(is_sat);
 }
-*/
 
 #[test]
 fn generate_cnf_check_model(){
