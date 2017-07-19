@@ -10,7 +10,7 @@ depth first search with *unit propagation* (UP), if a literal must be true in th
 can find my implementation of the DPLL algorithm in the Rust-file 
 [src/logic/sat.rs](https://github.com/erohkohl/n-queens-sat/blob/master/src/logic/sat.rs). Furthermore the file 
 [src/model/n_queens.rs](https://github.com/erohkohl/n-queens-sat/blob/master/src/model/n_queens.rs) 
-contains the modelling of the n-queens-problem as propositional formula. The following listing shows one possible
+contains the modelling of the n-queens problem as propositional formula. The following listing shows one possible
 solution of the four-queens problem.
 
 ```bash
