@@ -10,7 +10,7 @@ pub fn print_chess_board(assign: Vec<i32>) -> String {
     }
     let mut col: Vec<i32> = Vec::new();
     let mut row: Vec<i32> = Vec::new();
-    ;
+    
     for i in queens_position {
         col.push(i % 10i32);
         row.push(i / 10i32);
