@@ -1,5 +1,7 @@
-Modelling n-queens problem as propositional formula and solve it with DPLL [![Build Status](https://travis-ci.org/erohkohl/n-queens-sat.svg?branch=master)](https://travis-ci.org/erohkohl/n-queens-sat) [![codecov](https://codecov.io/gh/erohkohl/n-queens-sat/branch/master/graph/badge.svg)](https://codecov.io/gh/erohkohl/n-queens-sat)
+Modelling n-queens problem as propositional formula and solve it with DPLL 
 ------------
+[![Build Status](https://travis-ci.org/erohkohl/n-queens-sat.svg?branch=master)](https://travis-ci.org/erohkohl/n-queens-sat) [![codecov](https://codecov.io/gh/erohkohl/n-queens-sat/branch/master/graph/badge.svg)](https://codecov.io/gh/erohkohl/n-queens-sat)
+
 This project provides a simple implementation of the *Davis, Putnam, Logemann* and *Loveland* algorithm 
 (see [DPLL](https://en.wikipedia.org/wiki/DPLL_algorithm)) in the modern systems programming language 
 [Rust](https://www.rust-lang.org/en-US/). The DPLL algorithm decides whether a propositional 
