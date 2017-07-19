@@ -7,5 +7,5 @@ use dpll::view::renderservice as ui;
 pub fn main() {
     let n = 4;
     let (_, model) = sat::solve(queens::generate_cnf(n), n * n);
-    ui::print_chess_board(model);
+    println!("{}", ui::print_chess_board(model));
 }

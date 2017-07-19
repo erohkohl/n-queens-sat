@@ -1,3 +1,5 @@
+/// This method gets a satisfiable assignment of the n-queens problem and returns an String,
+/// which contains the queens positions on a chess board.
 pub fn print_chess_board(assign: Vec<i32>) -> String {
     let mut chess_board: String = String::new();
     let mut queens_position: Vec<i32> = Vec::new();
@@ -10,7 +12,7 @@ pub fn print_chess_board(assign: Vec<i32>) -> String {
     }
     let mut col: Vec<i32> = Vec::new();
     let mut row: Vec<i32> = Vec::new();
-    
+
     for i in queens_position {
         col.push(i % 10i32);
         row.push(i / 10i32);
@@ -28,6 +30,5 @@ pub fn print_chess_board(assign: Vec<i32>) -> String {
         }
         chess_board.push_str("\n");
     }
-    println!("{}", chess_board);
     return chess_board;
 }
