@@ -22,3 +22,9 @@ Q . . .
 
 This implementation is not able to solve six-queens problem in acceptable time, because it's
 data structures and UP is not fast enough.
+
+#### Future work
+
+- Improve performance of UP and data structures to solve eight-queens problem in appropriate time
+- Add *Conflict-Driven Clause Learning* (see [CDCL](https://en.wikipedia.org/wiki/Conflict-Driven_Clause_Learning)) 
+to DPLL algorithm
