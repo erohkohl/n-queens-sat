@@ -6,9 +6,9 @@ use dpll::logic::sat as solver;
 
 #[test]
 fn test_complex_cnf_case_one() {
-    let number_of_var:usize = 5;
-    let partial_assignment:Vec<i32> = Vec::with_capacity(number_of_var);
-    let mut cnf:HashSet<Vec<i32>> = HashSet::new();
+    let number_of_var: usize = 5;
+    let partial_assignment: Vec<i32> = Vec::with_capacity(number_of_var);
+    let mut cnf: HashSet<Vec<i32>> = HashSet::new();
 
     cnf.insert(vec![1, 2, 3]);
     cnf.insert(vec![1, 2, 4]);
@@ -29,15 +29,15 @@ fn test_complex_cnf_case_one() {
     cnf.insert(vec![-2, -5, -4]);
     cnf.insert(vec![-3, -5, -4]);
 
-    let (res_bool, _ ):(bool, Vec<i32>) = solver::dpll(cnf, partial_assignment);
+    let (res_bool, _): (bool, Vec<i32>) = solver::dpll(cnf, partial_assignment);
     assert!(res_bool);
 }
 
 #[test]
 fn test_complex_cnf_case_two() {
-    let number_of_var:usize = 5;
-    let partial_assignment:Vec<i32> = Vec::with_capacity(number_of_var);
-    let mut cnf:HashSet<Vec<i32>> = HashSet::new();
+    let number_of_var: usize = 5;
+    let partial_assignment: Vec<i32> = Vec::with_capacity(number_of_var);
+    let mut cnf: HashSet<Vec<i32>> = HashSet::new();
     cnf.insert(vec![1, 2, 3]);
     cnf.insert(vec![-1]);
     cnf.insert(vec![-3]);
@@ -61,6 +61,6 @@ fn test_complex_cnf_case_two() {
     cnf.insert(vec![-2, -5, -4]);
     cnf.insert(vec![-3, -5, -4]);
 
-    let (res_bool, _ ):(bool, Vec<i32>) = solver::dpll(cnf, partial_assignment);
+    let (res_bool, _): (bool, Vec<i32>) = solver::dpll(cnf, partial_assignment);
     assert!(!res_bool);
 }
