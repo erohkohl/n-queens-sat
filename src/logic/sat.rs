@@ -37,9 +37,9 @@ pub fn dpll(mut cnf: HashSet<Vec<i32>>, mut partial_assignment: Vec<i32>) -> (bo
             right.push(lit * (-1));
 
             let (left_bool, left_assign): (bool, Vec<i32>)
-            = dpll(trim_cnf(cnf.clone(), lit), left);
+                = dpll(trim_cnf(cnf.clone(), lit), left);
             let (right_bool, right_assign): (bool, Vec<i32>)
-            = dpll(trim_cnf(cnf, lit * (-1)), right);
+                = dpll(trim_cnf(cnf, lit * (-1)), right);
 
             // makes new branching in our decision tree
             if left_bool {
