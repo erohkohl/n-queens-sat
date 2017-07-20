@@ -5,7 +5,7 @@ Modelling n-queens problem as propositional formula and solve it with DPLL
 This project provides a simple implementation of the *Davis, Putnam, Logemann* and *Loveland* algorithm 
 (see [DPLL](https://en.wikipedia.org/wiki/DPLL_algorithm)) in the modern systems programming language 
 [Rust](https://www.rust-lang.org/en-US/). The DPLL algorithm decides whether a propositional 
-formula in conjunctive normal form (CNF) is satisfiable and returns a satisfiable assignment. Therefore it extends the 
+formula in *conjunctive normal form* (CNF) is satisfiable and returns a satisfiable assignment. Therefore it extends the 
 depth first search with *unit propagation* (UP), if a literal must be true in the current partial assignment. You
 can find my implementation of the DPLL algorithm in the Rust-file 
 [src/logic/sat.rs](https://github.com/erohkohl/n-queens-sat/blob/master/src/logic/sat.rs). Furthermore the file 
